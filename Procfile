@@ -1,1 +1,1 @@
-python -m run basil.py
+web:python -m run basil.py

@@ -1,0 +1,61 @@
+<html lang="en">
+		<head>
+		  <meta charset="utf-8">
+
+		  <title></title>
+		  <meta name="description" content="">
+		  <meta name="author" content="aoa4eva">
+		  <link rel="stylesheet" href="css/styles.css?v=1.0">
+		  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+		  		<script type="text/javascript" src=https://code.jquery.com/jquery-1.12.4.js></script>
+			<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script> 
+		</head>
+		<body>
+
+			<script type="text/javascript" class="init">
+				$(document).ready(function() {
+    			$('#example').DataTable();
+				} );
+			</script>
+					<h1>Hurray! You successfully connected to the database</h1>
+					<p>These are the settings you entered:</p>
+					<p>{{session['databasename']}}</p>
+					<p>{{session['host']}}</p>
+					<p>{{session['user']}}</p>
+					<p>{{session['password']}}</p>
+					<p>{{session['port']}}</p>
+
+					<h2>{{session['chosentable']}}</h2>
+
+					<form action="/showdata" method="post">
+							<p>This is the list of tables in the database:</p>
+							<select name="chosentable">
+							{% for table in session['alltables']%}
+								<option value={{table}}>{{table}}</option>
+							{% endfor %}
+							</select>
+							<input type="submit" value="View Data" name="viewtable"/>
+					</form>
+
+					<table id="example" class="display" cellspacing="0" width="100%">
+						<thead>
+							<tr>
+							{% for name in session['colnames']%}
+								<th>{{name}}</th>
+							{% endfor %}
+							</tr>
+						</thead>
+						<tbody>
+					
+							{% for row in session['values'] %}
+							<tr>
+						    {% for cell in row %}
+						        <td>{{cell}}</td>
+						    {% endfor %}  
+						    </tr>
+							{% endfor %}
+							
+						</tbody>
+					</table>
+	</body>
+</html>

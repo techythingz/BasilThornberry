@@ -1,0 +1,17 @@
+.highlight
+{
+	background-color:green; 
+	color:white;
+}
+.addblack{
+	background-color:black;
+	color:white;
+}
+.addgreen
+{
+	color:green;
+}
+.largesize
+{
+	font-size:2em;
+}

@@ -1,1 +1,1 @@
-web: python dealscraper/basil.py
+web: python basil.py

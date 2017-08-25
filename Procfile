@@ -1,1 +1,1 @@
-flask run basil.py
+python -m run basil.py

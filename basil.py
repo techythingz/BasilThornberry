@@ -5,6 +5,7 @@ from flask import request
 from flask import session 
 from flask import url_for, redirect, escape
 app = Flask(__name__)
+app.run(host='0.0.0.0', port=80)
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
 from basil import app as application

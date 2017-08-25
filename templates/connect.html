@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,9 +34,19 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src=https://code.jquery.com/jquery-1.12.4.js></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script> 
+       
+
 </head>
 
 <body id="page-top">
+                <script type="text/javascript" class="init">
+                $(document).ready(function() {
+                $('#example').DataTable();
+                } );
+            </script>
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top addblack">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -71,71 +80,40 @@
     </nav>
     <section id="services">
         <div class="container">
-                        <div class="col-sm-12 col-md-12 text-center">
-                                <h1>Try it out!</h1>
-                        </div>
-                       <!-- <div class="col-sm-12 col-md-2"></div> -->
-                      <!--  <div class="col-sm-12 col-md-1 ">
-                             <form>
-                                      <div class="form-group">
-                                        <label for="exampleInputEmail1">Database</label>
-                                        <input type="email" class="form-control" id="dbname" name="dbname"placeholder="Enter your database name">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="exampleInputEmail1">Host</label>
-                                        <input type="email" class="form-control" id="hostname" name="hostname" placeholder="Enter your host name">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="exampleInputEmail1">User name</label>
-                                        <input type="email" class="form-control" id="username" name ="username"placeholder="Enter your user name">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="exampleInputEmail1">Password</label>
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="exampleInputEmail1">Port Number</label>
-                                        <input type="email" class="form-control" id="port" name="port" placeholder="Enter your port number">
-                                      </div>
-                                      <button type="submit" class="btn btn-success">Submit</button>
-                            </form>
-                        </div>-->
-                        <div class="col-sm-12 col-md-10">
-                                        <table class="table">
-                                                <thead>
-                                                    <th>col1</th>
-                                                    <th>col2</th>
-                                                    <th>col3</th>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                             <td>Item</td>
-                                                             <td>Item</td>
-                                                             <td>Item</td>
-                                                    </tr>
-                                                    <tr>
-                                                             <td>Item</td>
-                                                             <td>Item</td>
-                                                             <td>Item</td>
-                                                    </tr>
-                                                    <tr>
-                                                             <td>Item</td>
-                                                             <td>Item</td>
-                                                             <td>Item</td>
-                                                    </tr>
-                                                </tbody>
-                                        </table>
+                    <h2>{{session['chosentable']}}</h2>
+                    <form action="/showdata" method="post">
+                            <p>This is the list of tables in the database:</p>
+                            <select name="chosentable">
+                            {% for table in session['alltables']%}
+                                <option value={{table}}>{{table}}</option>
+                            {% endfor %}
+                            </select>
+                            <input type="submit" value="View Data" name="viewtable"/>
+                    </form>
 
-                                        <form action="#" method="post">
-                                                <h2>Run a query</h2>
-                                                <h6>You can run read-only SQL statements in this window</h6>
-                                                <textarea class="form-control"></textarea>
-                                                <button type="submit" class="btn btn-success pull-right"><span class="glyphicon glyphicon-leaf"></span></button>
-                                        </form>
- 
-                        </div>
-            </div>
+                    <table id="example" class="display" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                            {% for name in session['colnames']%}
+                                <th>{{name}}</th>
+                            {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                    
+                            {% for row in session['values'] %}
+                            <tr>
+                            {% for cell in row %}
+                                <td>{{cell}}</td>
+                            {% endfor %}  
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+        </div>
     </section>
+                     
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>

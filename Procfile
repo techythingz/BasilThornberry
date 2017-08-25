@@ -1,2 +1,2 @@
-web: FLASK_APP=basil.py
+FLASK_APP=basil.py
 web: python -m flask run 

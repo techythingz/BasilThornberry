@@ -1,1 +1,1 @@
-web gunicorn manage:app
+web: python dealscraper/basil.py

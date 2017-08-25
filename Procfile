@@ -1,0 +1,1 @@
+web gnunicorn manage:app

@@ -35,6 +35,10 @@ def addStuff():
 def testHTML():
     return render_template('test.html')
 
+@app.route("/showtables")
+def showTables():
+	connektBasilR()
+	return render_template('showtables.html')
 @app.route("/showdata", methods=['POST'])
 def showData():
 	session['chosentable']=request.form['chosentable']
@@ -58,6 +62,7 @@ def connektBasilR():
 	cursor.execute("select relname from pg_class where relkind='r' and relname !~ '^(pg_|sql_)';")
 	alltables = cursor.fetchall()
 	oneTable = cursor.fetchone();
+	session['alltables']=alltables
 	return "%s" % oneTable
 
 def connektBasil(tablename):

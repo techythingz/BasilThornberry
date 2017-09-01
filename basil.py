@@ -105,4 +105,5 @@ def connektBasil(tablename):
 	session['alltables']=theList
 	session['colnames']=colnames
 	session['values']=values
-
+if __name__ == "__main__":
+    app.run()

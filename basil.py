@@ -5,6 +5,9 @@ from flask import render_template
 from flask import request 
 from flask import session 
 from flask import url_for, redirect, escape
+if __name__ == "__main__":
+    app.run(debug=True)
+    
 app = Flask(__name__)
 app.debug = True
 port = int(os.environ.get("PORT", 5000))

@@ -1,1 +1,1 @@
-web:python basil.py
+web :python basil.py

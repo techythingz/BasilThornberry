@@ -6,7 +6,7 @@ from flask import request
 from flask import session 
 from flask import url_for, redirect, escape
 app = Flask(__name__)
-app.run(host='0.0.0.0') 
+app.run(host='0.0.0.0').listen(process.env.PORT || 5000)
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
 

@@ -11,6 +11,8 @@
     <title>Basil ROnly - PostgreSQL viewer</title>
 
     <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+
     <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
@@ -34,7 +36,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+
     <script type="text/javascript" src=https://code.jquery.com/jquery-1.12.4.js></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script> 
        
@@ -80,8 +82,11 @@
     </nav>
     <section >
         <div class="container">
-
-
+            <script type="text/javascript" class="init">
+                $(document).ready(function() {
+                $('#example').DataTable();
+                } );
+            </script>
             <div class="col-xs-12 col-md-12 col-lg-12">
                 <div class="form-group form-group-lg">
                     <form action="/showdata" method="post">
@@ -91,8 +96,29 @@
                                 <option value={{table}}>{{table}}</option>
                             {% endfor %}
                             </select>
-                            <input class="btn btn-md" type="submit" value="View Data" name="viewtable"/>
+                            <input  class="btn btn-md" type="submit" value="View Data" name="viewtable"/>
                     </form>
+
+                    <table class="table" id="example" class="display compact" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                            {% for name in session['colnames']%}
+                                <th>{{name}}</th>
+                            {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                    
+                            {% for row in session['values'] %}
+                            <tr>
+                            {% for cell in row %}
+                                <td>{{cell}}</td>
+                            {% endfor %}  
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

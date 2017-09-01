@@ -86,12 +86,12 @@
                 <div class="form-group form-group-lg">
                     <form action="/showdata" method="post">
                             <p>This is the list of tables in the database:</p>
-                            <select class="text-center selectpicker" name="chosentable">
+                            <select class="text-center" name="chosentable">
                             {% for table in session['alltables']%}
                                 <option value={{table}}>{{table}}</option>
                             {% endfor %}
                             </select>
-                            <input class="btn btn-md" type="submit" value="View Data" name="viewtable"/>
+                            <input class="btn btn-lg" type="submit" value="View Data" name="viewtable"/>
                     </form>
                 </div>
             </div>

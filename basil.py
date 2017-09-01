@@ -28,8 +28,8 @@ def addStuff():
 	session['user'] = request.form['username']
 	session['password'] = request.form['password']
 	session['port'] = request.form['port']
-	return connektBasilR()
-	#return render_template("othertest.html")
+	connektBasilR()
+	return render_template("showtables.html")
 
 @app.route("/test")
 def testHTML():
@@ -39,11 +39,12 @@ def testHTML():
 def showTables():
 	connektBasilR()
 	return render_template('showtables.html')
+
 @app.route("/showdata", methods=['POST'])
 def showData():
 	session['chosentable']=request.form['chosentable']
 	connektBasil(request.form['chosentable'])
-	return render_template("othertest.html")
+	return render_template("basetemplatecopy.html")
 
 def connektBasilR():
 	mydatabase = session['databasename']
@@ -58,12 +59,19 @@ def connektBasilR():
 	    conn = psycopg2.connect(database=mydatabase, user=myuser, password=mypassword, host=myhost, port=myport)
 	except:
 	    return "Unable to connect to the database" 
+
 	cursor = conn.cursor()
 	cursor.execute("select relname from pg_class where relkind='r' and relname !~ '^(pg_|sql_)';")
 	alltables = cursor.fetchall()
-	oneTable = cursor.fetchone();
-	session['alltables']=alltables
-	return "%s" % oneTable
+
+	for table in alltables:
+		stripped = "%s" % table
+   		theList.append(stripped)
+ 
+	cursor.close()	    	    
+	session['alltables']=theList
+
+
 
 def connektBasil(tablename):
 	mydatabase = session['databasename']
@@ -84,8 +92,7 @@ def connektBasil(tablename):
 	table = tablename
 
 	for oneTable in alltables:
-  		stripped = "%s" % oneTable
-  		theList.append(stripped)
+  		theList.append(oneTable)
   	
   	showsql="select * from "+table
 	cursor.execute(showsql)

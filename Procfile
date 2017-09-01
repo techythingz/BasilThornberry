@@ -1,1 +1,1 @@
-web :python -m flask run basil.py
+web :python basil.py

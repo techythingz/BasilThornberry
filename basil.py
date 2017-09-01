@@ -7,13 +7,12 @@ from flask import session
 from flask import url_for, redirect, escape
 if __name__ == "__main__":
     app.run(debug=True)
-    
-app = Flask(__name__)
-app.debug = True
-port = int(os.environ.get("PORT", 5000))
-app.run(host='0.0.0.0') 
-app.secret_key = 'super secret key'
-app.config['SESSION_TYPE'] = 'filesystem'
+#app = Flask(__name__)
+    app.debug = True
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0') 
+    app.secret_key = 'super secret key'
+    app.config['SESSION_TYPE'] = 'filesystem'
 
 @app.route("/")
 def hello():

@@ -4,9 +4,12 @@ from flask import render_template
 from flask import request 
 from flask import session 
 from flask import url_for, redirect, escape
-app = Flask(__name__)
-app.secret_key = 'super secret key'
-app.config['SESSION_TYPE'] = 'filesystem'
+if __name__ == '__main__':
+    app.debug = True
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+    app.secret_key = 'super secret key'
+    app.config['SESSION_TYPE'] = 'filesystem'
 
 @app.route("/")
 def hello():
@@ -65,7 +68,7 @@ def connektBasilR():
 	alltables = cursor.fetchall()
 
 	for table in alltables:
-		stripped = "%s" % table
+	    stripped = "%s" % table
    		theList.append(stripped)
  
 	cursor.close()	    	    

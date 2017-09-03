@@ -5,7 +5,7 @@ from flask import render_template
 from flask import request 
 from flask import session 
 from flask import url_for, redirect, escape
-application = Flask(__name__)
+app = Flask(__name__)
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.run(host='0.0.0.0')

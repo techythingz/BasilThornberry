@@ -8,6 +8,8 @@ from flask import url_for, redirect, escape
 app = Flask(__name__)
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
 
 @app.route("/")
 def hello():
@@ -104,4 +106,3 @@ def connektBasil(tablename):
 	session['alltables']=theList
 	session['colnames']=colnames
 	session['values']=values
-

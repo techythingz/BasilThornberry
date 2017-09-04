@@ -1,5 +1,5 @@
-from basil import application
+from basil import app
 
 if __name__ == "__main__":
-    application.run()
+    app.run()
 

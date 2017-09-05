@@ -88,10 +88,7 @@ def connektBasil(tablename):
 	cursor.execute("select relname from pg_class where relkind='r' and relname !~ '^(pg_|sql_)';")
 	alltables = cursor.fetchall()
 	table = tablename
-
-'''	for oneTable in alltables:
-  		theList.append(oneTable)
- ''' 	
+	
   	showsql="select * from "+ table
 	cursor.execute(showsql)
 	colnames = [desc[0] for desc in cursor.description]

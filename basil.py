@@ -89,16 +89,16 @@ def connektBasil(tablename):
 	alltables = cursor.fetchall()
 	table = tablename
 
-	for oneTable in alltables:
+'''	for oneTable in alltables:
   		theList.append(oneTable)
-  	
-  	showsql="select * from "+table
+ ''' 	
+  	showsql="select * from "+ table
 	cursor.execute(showsql)
 	colnames = [desc[0] for desc in cursor.description]
 	values = cursor.fetchall()
 
 	cursor.close()	    	    
-	session['alltables']=theList
+#	session['alltables']=theList
 	session['colnames']=colnames
 	session['values']=values
 

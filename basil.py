@@ -12,7 +12,7 @@ port = int(os.environ.get("PORT", 5000))
 
 @app.route("/")
 def hello():
-    return "Hello World!"
+     return redirect(url_for('basil'))
 
 @app.route("/basil")
 def showIndex():

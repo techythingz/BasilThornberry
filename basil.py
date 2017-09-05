@@ -11,12 +11,8 @@ app.config['SESSION_TYPE'] = 'filesystem'
 port = int(os.environ.get("PORT", 5000))
 
 @app.route("/")
-def hello():
-     return redirect(url_for('basil'))
-
-@app.route("/basil")
 def showIndex():
-	return render_template('index.html')
+     return render_template('index.html')
 
 @app.route("/connect")
 def showadded():
